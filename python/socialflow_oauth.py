@@ -9,9 +9,6 @@
 
 from rauth import OAuth1Service, OAuth1Session
 
-CONSUMER_KEY = 'MY_CONSUMER_KEY'
-CONSUMER_SECRET = 'MY_CONSUMER_SECRET'
-
 BASE_URL = "http://www.socialflow.com"
 API_BASE_URL = "http://api.socialflow.com"
 
@@ -24,10 +21,10 @@ def api_url_for(rel_path):
     return API_BASE_URL + rel_path
 
 
-def fetch_access_token():
+def fetch_access_token(consumer_key, consumer_secret):
     socialflow = OAuth1Service(
-        consumer_key=CONSUMER_KEY,
-        consumer_secret=CONSUMER_SECRET,
+        consumer_key=consumer_key,
+        consumer_secret=consumer_secret,
         name='socialflow',
         access_token_url=url_for('/oauth/access_token'),
         authorize_url=url_for('/oauth/authorize'),
@@ -47,22 +44,32 @@ def fetch_access_token():
         request_token_secret,
         params={'oauth_verifier': pin})
 
+
+def example_request(
+        consumer_key,
+        consumer_secret,
+        token,
+        token_secret):
+    api = OAuth1Session(
+        consumer_key,
+        consumer_secret,
+        access_token=token,
+        access_token_secret=token_secret)
+    return api.get(api_url_for('/account/list'))
+
+
+def run():
+    key = raw_input("Consumer key:")
+    secret = raw_input("Consumer secret:")
+    key = key.strip()
+    secret = secret.strip()
+    access_token, access_token_secret = fetch_access_token(key, secret)
     print """
     access_token: %(access_token)s
     access_token_secret: %(access_token_secret)s
     """ % {"access_token": access_token,
            "access_token_secret": access_token_secret}
-
-
-def example_request(access_token, access_token_secret):
-    api = OAuth1Session(
-        CONSUMER_KEY,
-        CONSUMER_SECRET,
-        access_token=access_token,
-        access_token_secret=access_token_secret)
-    return api.get(api_url_for('/account/list'))
-
+    print example_request(key, secret, access_token, access_token_secret).text
 
 if __name__ == '__main__':
-    access_token, access_token_secret = fetch_access_token()
-    print example_request(access_token, access_token_secret).text
+    run()
