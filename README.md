@@ -13,6 +13,7 @@ It will fetch a set of keys from SocialFlow after you authenticate, which you ca
 ##REQUIREMENTS
 
 You will need your application credentials, which you can obtain from your account manager at SocialFlow, and the SocialFlow API documentation, which can be obtained from your account manager as well.
+You will also need access to the account that you want to use to make API calls with. We recommend creating a user specifically for the project that you are using the API for, then logging in as that user before running the script.
 
 ##AUTHOR
 
