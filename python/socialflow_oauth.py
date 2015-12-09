@@ -55,7 +55,7 @@ def example_request(
         consumer_secret,
         access_token=token,
         access_token_secret=token_secret)
-    return api.get(api_url_for('/account/list'))
+    return api.get(api_url_for('/account/list'),params={"test":"true"})
 
 
 def run():
