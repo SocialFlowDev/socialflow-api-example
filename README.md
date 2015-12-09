@@ -1,23 +1,22 @@
 ## SYNOPSIS
 
-````
     git clone https://github.com/SocialFlowDev/socialflow-api-example/
     cd python
     pip install -r pip-requirements.txt
-    python socialflow_oauth.py
-````
-    follow on screen instructions.
+    python socialflow_oauth.py #Then follow the onscreen instructions.
 
 ##DESCRIPTION
 
-    Example script to authenticate into SocialFlow's OAuth API.
-    you can then save your access_token and access_token_secret and reuse
-    it in later scripts.
+This is an example python script that will authenticate into SocialFlow's OAuth API and make an authenticated request.
+It will fetch a set of keys from SocialFlow after you authenticate, which you can store and reuse.
 
-Obtain your consumer key and secret from SocialFlow.
-Designate a user that you are going to use for API calls.
+##REQUIREMENTS
+
+You will need your application credentials, which you can obtain from your account manager at SocialFlow, and the SocialFlow API documentation, which can be obtained from your account manager as well.
 
 ##AUTHOR
 
-SocialFlow, Inc.
+Samuel Kaufman
+
+CTO, SocialFlow, Inc.
 
