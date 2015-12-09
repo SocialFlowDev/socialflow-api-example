@@ -9,8 +9,8 @@
 
 from rauth import OAuth1Service, OAuth1Session
 
-BASE_URL = "http://www.socialflow.com"
-API_BASE_URL = "http://api.socialflow.com"
+BASE_URL = "https://www.socialflow.com"
+API_BASE_URL = "https://api.socialflow.com"
 
 
 def url_for(rel_path):
@@ -64,12 +64,29 @@ def run():
     key = key.strip()
     secret = secret.strip()
     access_token, access_token_secret = fetch_access_token(key, secret)
-    print """
-    access_token: %(access_token)s
-    access_token_secret: %(access_token_secret)s
-    """ % {"access_token": access_token,
-           "access_token_secret": access_token_secret}
     print example_request(key, secret, access_token, access_token_secret).text
+    print """
+    ========
+
+    This example uses the 'rauth' module to work with the SocialFlow API.
+    It is documented here: https://rauth.readthedocs.org/en/latest/
+
+    Keep the following credentials somewhere secure.
+    You can use 'example_request' in socialflow_oauth.py
+    as a basis for how to make API calls against the SocialFlow API.
+
+    consumer_key:         %(consumer_key)s
+    consumer_secret:      %(consumer_secret)s
+    access_token:         %(access_token)s
+    access_token_secret:  %(access_token_secret)s
+
+    ========
+    """ % {
+            "consumer_key": key,
+            "consumer_secret": secret,
+            "access_token": access_token,
+           "access_token_secret": access_token_secret,
+           }
 
 if __name__ == '__main__':
     run()
