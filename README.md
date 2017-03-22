@@ -39,7 +39,7 @@ http://docs.python-requests.org/en/latest/user/advanced/#session-objects
 To add query parameters to the calls, see:
 http://docs.python-requests.org/en/latest/user/quickstart/#passing-parameters-in-urls
 
-The web based flow uses [Flask]
+The web based flow uses [Flask][1].
 
 [1]: http://flask.pocoo.org/
 
