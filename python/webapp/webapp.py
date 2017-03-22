@@ -2,6 +2,7 @@ from flask import Flask, request, url_for, redirect, session, render_template
 from flaskrun import flaskrun
 import yaml
 import os,inspect
+import json
 from rauth import OAuth1Service, OAuth1Session
 
 
@@ -73,9 +74,19 @@ class WebApp():
                 params={"oauth_verifier":oauth_verifier}
                 )
         session['access_token'],session['access_token_secret'] = token
+        api = OAuth1Session(
+            self.consumer_key,
+            self.consumer_secret,
+            access_token=session['access_token'],
+            access_token_secret=session['access_token_secret']
+            )
+        res = api.get(self._api_url_for('/account/list'))
+        pretty_json = json.dumps(res.json(), sort_keys=True, indent=4, separators=(',', ': '))
+
         return render_template('access_granted.html',
                 access_token=session['access_token'],
                 access_token_secret=session['access_token_secret'],
+                pretty_json=pretty_json,
                 )
 
     def index(self):
