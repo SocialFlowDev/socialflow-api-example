@@ -6,4 +6,4 @@ config:
     creds:
         consumer_key: CONSUMER KEY
         consumer_secret: CONSUMER SECRET
-
+        session_secret_key: SESSION SECRET
