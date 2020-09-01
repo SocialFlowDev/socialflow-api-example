@@ -1,6 +1,6 @@
 config:
     socialflow_config:
-        base_url: https://www.socialflow.com
+        base_url: https://app.socialflow.com
         api_base_url: https://api.socialflow.com
 
     creds:

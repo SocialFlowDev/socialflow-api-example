@@ -9,7 +9,7 @@
 
 from rauth import OAuth1Service, OAuth1Session
 
-BASE_URL = "https://www.socialflow.com"
+BASE_URL = "https://app.socialflow.com"
 API_BASE_URL = "https://api.socialflow.com"
 
 
