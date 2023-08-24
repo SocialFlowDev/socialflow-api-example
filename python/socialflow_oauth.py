@@ -6,7 +6,7 @@
     you can then save your access_token and access_token_secret and reuse
     it in later scripts.
 """
-
+import logging
 from rauth import OAuth1Service, OAuth1Session
 
 BASE_URL = "https://app.socialflow.com"
@@ -34,10 +34,10 @@ def fetch_access_token(consumer_key, consumer_secret):
         method='GET',
         params={'oauth_callback': 'oob'})
     authorize_url = socialflow.get_authorize_url(request_token)
-    print """Go to %s
+    print("""Go to %s
         authorize the account you wish to use for the SocialFlow API
-        then enter your PIN below""" % authorize_url
-    pin = raw_input("PIN: ")
+        then enter your PIN below""" % authorize_url)
+    pin = input("PIN: ")
     pin = pin.strip()
     return socialflow.get_access_token(
         request_token,
@@ -59,13 +59,15 @@ def example_request(
 
 
 def run():
-    key = raw_input("Consumer key:")
-    secret = raw_input("Consumer secret:")
+    # Disable the next line if you don't want to see secrets logged.
+    logging.basicConfig(level=logging.DEBUG)
+    key = input("Consumer key:")
+    secret = input("Consumer secret:")
     key = key.strip()
     secret = secret.strip()
     access_token, access_token_secret = fetch_access_token(key, secret)
-    print example_request(key, secret, access_token, access_token_secret).text
-    print """
+    print(example_request(key, secret, access_token, access_token_secret).text)
+    print("""
     ========
 
     This example uses the 'rauth' module to work with the SocialFlow API.
@@ -92,7 +94,7 @@ def run():
             "consumer_secret": secret,
             "access_token": access_token,
            "access_token_secret": access_token_secret,
-           }
+           })
 
 if __name__ == '__main__':
     run()
