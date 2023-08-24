@@ -11,7 +11,7 @@ def _config():
      configFile = os.path.join(cwd,"etc","config.yml")
      cfg = None
      with open(configFile,"r") as f:
-         _cfg = yaml.load(f)
+         _cfg = yaml.safe_load(f)
          cfg = _cfg
      if cfg is None:
         raise Exception("etc/config.yml failed to load.")
