@@ -1,0 +1,5 @@
+{
+    "require": {
+        "carlos-mg89/oauth": "^0.8.15"
+    }
+}
